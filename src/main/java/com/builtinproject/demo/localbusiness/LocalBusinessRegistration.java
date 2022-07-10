@@ -23,6 +23,11 @@ public class LocalBusinessRegistration {
     public List<LocalBusinessRegistrationEntity> getAllRegistration(){
         return _localBusinessRegistrationRepository.findAll();
     }
+    @GetMapping("/{id}")
+    public LocalBusinessRegistrationEntity getRegisteredUser(@PathVariable Long id){
+        return _localBusinessRegistrationRepository.findById(id).orElseThrow(RuntimeException::new);
+    }
+
     @PostMapping
     public ResponseEntity registerLocalUser(@RequestBody LocalBusinessRegistrationEntity localBusinessRegistrationEntity) throws URISyntaxException {
         LocalBusinessRegistrationEntity registrationEntity = _localBusinessRegistrationRepository.save(localBusinessRegistrationEntity);

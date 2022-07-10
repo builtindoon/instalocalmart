@@ -67,13 +67,13 @@ class Registration extends Component {
                 <Form onSubmit={this.handleSubmit}>
                     <FormGroup className="mb-1">
                         <Label for="firstName">First Name</Label>
-                        <Input type="text" name="firstname" id="firstname" value={item.firstName || ''}
-                               onChange={this.handleChange} autoComplete="firstname"/>
+                        <Input type="text" name="firstName" id="firstName" value={item.firstName || ''}
+                               onChange={this.handleChange} autoComplete="firstName"/>
                     </FormGroup>
                     <FormGroup className="mb-1">
                         <Label for="lastName">Last Name</Label>
-                        <Input type="text" name="firstname" id="lastname" value={item.lastName || ''}
-                               onChange={this.handleChange} autoComplete="lastname"/>
+                        <Input type="text" name="lastName" id="lastName" value={item.lastName || ''}
+                               onChange={this.handleChange} autoComplete="lastName"/>
                     </FormGroup>
                     <FormGroup className="mb-1">
                         <Label for="address">Address</Label>
@@ -92,7 +92,7 @@ class Registration extends Component {
                     </FormGroup>
                     <FormGroup className="mb-1">
                         <Label for="pinCode">Pincode</Label>
-                        <Input type="number" name="pinCode" id="pinCode" value={item.pinCode || ''}
+                        <Input type="text" name="pinCode" id="pinCode" value={item.pinCode || ''}
                                onChange={this.handleChange} autoComplete="pinCode"/>
                     </FormGroup>
                     <FormGroup className="mb-1">
