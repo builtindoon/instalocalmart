@@ -1,10 +1,8 @@
 package com.builtinproject.demo.controller;
 
 
-import com.builtinproject.demo.client.Client;
+import com.builtinproject.demo.bean.Client;
 import com.builtinproject.demo.repo.ClientRepository;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

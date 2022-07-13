@@ -1,4 +1,4 @@
-package com.builtinproject.demo.client;
+package com.builtinproject.demo.bean;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,16 +13,25 @@ import javax.persistence.Table;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "client")
-public class Client {
-
+@AllArgsConstructor
+@Table(name = "lb_registration")
+public  class LocalBusinessRegistrationEntity {
     @Id
     @GeneratedValue
     private Long id;
 
-    private String name;
+    private String firstName;
+    private String lastName;
+    private String address;
+    private String city;
+    private String district;
+    private String state;
+    private String pinCode;
     private String email;
+    private String password;
+
+
+
 
 }

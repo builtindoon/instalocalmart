@@ -40,6 +40,7 @@ class RegistrationList extends Component {
                 <td>{registration.address}</td>
                 <td>{registration.city}</td>
                 <td>{registration.state}</td>
+                <td>{registration.pinCode}</td>
                 <td>
                     <ButtonGroup>
                         <Button size="sm" color="primary" tag={Link} to={"/local/" + registration.id}>Edit</Button>
@@ -53,10 +54,11 @@ class RegistrationList extends Component {
             <div>
                 <AppNavbar/>
                 <Container fluid>
-                    <div className="float-right">
+
+                    <div className="float-right mb-1">
                         <Button color="success" tag={Link} to="/local/new">Add User</Button>
                     </div>
-                    <h3>Users</h3>
+
                     <Table className="mt-4">
                         <thead>
                         <tr>
@@ -64,6 +66,8 @@ class RegistrationList extends Component {
                             <th width="10%">Last Name</th>
                             <th width="10%">Address</th>
                             <th width="10%">City</th>
+                            <th width="10%">State</th>
+                            <th width="10%">PinCode</th>
                             <th width="10%">Actions</th>
                         </tr>
                         </thead>

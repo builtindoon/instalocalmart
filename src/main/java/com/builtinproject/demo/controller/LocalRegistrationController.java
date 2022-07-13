@@ -1,6 +1,6 @@
-package com.builtinproject.demo.localbusiness;
+package com.builtinproject.demo.controller;
 
-
+import com.builtinproject.demo.bean.LocalBusinessRegistrationEntity;
 import com.builtinproject.demo.repo.LocalBusinessRegistrationRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,11 +11,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/local")
-public class LocalBusinessRegistration {
+public class LocalRegistrationController {
 
     private LocalBusinessRegistrationRepository _localBusinessRegistrationRepository;
 
-    public LocalBusinessRegistration(LocalBusinessRegistrationRepository localBusinessRegistrationRepository){
+    public LocalRegistrationController(LocalBusinessRegistrationRepository localBusinessRegistrationRepository){
         _localBusinessRegistrationRepository = localBusinessRegistrationRepository;
     }
 

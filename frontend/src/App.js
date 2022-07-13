@@ -6,6 +6,7 @@ import ClientList from './ClientList';
 import ClientEdit from "./ClientEdit";
 import Registration from "./Registration";
 import RegistrationList from "./RegistrationList";
+import Login from "./Login";
 
 class App extends Component {
     render() {
@@ -17,6 +18,7 @@ class App extends Component {
                     <Route path='/clients/:id' component={ClientEdit}/>
                     <Route path='/local' exact={true} component={RegistrationList}/>
                     <Route path='/local/:id' component={Registration}/>
+                    <Route path='/login' exact={true} component={Login}/>
                 </Switch>
             </Router>
         )
