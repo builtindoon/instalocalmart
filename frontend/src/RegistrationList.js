@@ -69,6 +69,7 @@ class RegistrationList extends Component {
                             <th width="10%">State</th>
                             <th width="10%">PinCode</th>
                             <th width="10%">Actions</th>
+                        
                         </tr>
                         </thead>
                         <tbody>

@@ -12,14 +12,17 @@ class Registration extends Component {
         address:'',
         city:'',
         state:'',
-        pinCode:''
-
+        pinCode:'',
+        password:'',
+        password2:'',
     };
 
     constructor(props) {
         super(props);
         this.state = {
-            item: this.emptyItem
+            item: this.emptyItem,
+            passwordError: '',
+            confirmPasswordError: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,23 +33,71 @@ class Registration extends Component {
             const localUser = await (await fetch(`/local/${this.props.match.params.id}`)).json();
             this.setState({item: localUser});
         }
+        
     }
 
-    handleChange(event) {
-        const target = event.target;
+    handleChange(evnt) {
+        const target = evnt.target;
         const value = target.value;
         const name = target.name;
         let item = {...this.state.item};
         item[name] = value;
         this.setState({item});
+        console.log(item);
+        const passwordInputValue = evnt.target.value.trim();
+    const passwordInputFieldName = evnt.target.name;
+        if(passwordInputFieldName==='password'){
+    const uppercaseRegExp   = /(?=.*?[A-Z])/;
+    const lowercaseRegExp   = /(?=.*?[a-z])/;
+    const digitsRegExp      = /(?=.*?[0-9])/;
+    const specialCharRegExp = /(?=.*?[#?!@$%^&*-])/;
+    const minLengthRegExp   = /.{8,}/;
+    const passwordLength =      passwordInputValue.length;
+    const uppercasePassword =   uppercaseRegExp.test(passwordInputValue);
+    const lowercasePassword =   lowercaseRegExp.test(passwordInputValue);
+    const digitsPassword =      digitsRegExp.test(passwordInputValue);
+    const specialCharPassword = specialCharRegExp.test(passwordInputValue);
+    const minLengthPassword =   minLengthRegExp.test(passwordInputValue);
+    let errMsg ="";
+    if(passwordLength===0){
+            errMsg="Password is empty";
+    }else if(!uppercasePassword){
+            errMsg="At least one Uppercase";
+    }else if(!lowercasePassword){
+            errMsg="At least one Lowercase";
+    }else if(!digitsPassword){
+            errMsg="At least one digit";
+    }else if(!specialCharPassword){
+            errMsg="At least one Special Characters";
+    }else if(!minLengthPassword){
+            errMsg="At least minumum 8 characters";
+    }else{
+        errMsg="";
+    }
+    //setPasswordErr(errMsg);
+    this.setState({passwordError: errMsg});
+    }
+    // for confirm password
+    if(passwordInputFieldName=== "password2" || (passwordInputFieldName==="password" && this.state.item['password2'].lengthh>0) ){
+            
+        if(this.state.item.password.slice(0, this.state.item.password.length-1)!==this.state.item.password2)
+        {
+        //setConfirmPasswordError("Confirm password is not matched");
+        this.setState({confirmPasswordError: "Confirm password is not matched"});
+        }else{
+        //setConfirmPasswordError("");
+        this.setState({confirmPasswordError: ""});
+        }
+        
+    }
     }
 
     async handleSubmit(event) {
         event.preventDefault();
         const {item} = this.state;
 
-        await fetch('/local' + (item.id ? '/' + item.id : ''), {
-            method: (item.id) ? 'PUT' : 'POST',
+        await fetch(('/local'), {
+            method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -100,6 +151,19 @@ class Registration extends Component {
                         <Input type="text" name="email" id="email" value={item.email || ''}
                                onChange={this.handleChange} autoComplete="email"/>
                     </FormGroup>
+                    <FormGroup className="mb-1">
+                        <Label for="email">Password</Label>
+                        <Input type="password" name="password" id="email" value={item.password|| ''}
+                               onChange={this.handleChange} autoComplete="password"/>
+                               <p style={{color: "red"}}>{this.state.passwordError}</p>
+                    </FormGroup>
+                     <FormGroup className="mb-1">
+                        <Label for="email">ConfirmPassword</Label>
+                        <Input type="password" name="password2" id="email" value={item.password2|| ''}
+                               onChange={this.handleChange} autoComplete="password2"/>
+                               <p style={{color: "red"}}>{this.state.confirmPasswordError}</p>
+                    </FormGroup>
+                     
                     <FormGroup className="mb-1">
                         <Button color="primary" type="submit">Save</Button>{' '}
                         <Button color="secondary" tag={Link} to="/local">Cancel</Button>

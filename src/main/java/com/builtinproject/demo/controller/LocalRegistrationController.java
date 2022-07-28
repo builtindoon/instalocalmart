@@ -2,6 +2,8 @@ package com.builtinproject.demo.controller;
 
 import com.builtinproject.demo.bean.LocalBusinessRegistrationEntity;
 import com.builtinproject.demo.repo.LocalBusinessRegistrationRepository;
+
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,6 +42,12 @@ public class LocalRegistrationController {
         //TODO for all the fields
 
         return ResponseEntity.ok(_localBusinessRegistrationRepository.save(localBusinessRegistrationEntity));
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteLocalUser(@PathVariable Long id){
+        _localBusinessRegistrationRepository.findById(id).orElseThrow(RuntimeException::new);
+        _localBusinessRegistrationRepository.deleteById(id);
+        return ResponseEntity.ok().build();
     }
 
 }
