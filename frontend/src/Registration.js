@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter , Route, Switch,Link, withRouter } from 'react-router-dom';
 
-import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
+import { Button, Container, Form, FormGroup, Input, Label, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle, Dropdown } from 'reactstrap';
 import AppNavbar from "./AppNavBar";
 
 class Registration extends Component {
@@ -12,14 +12,16 @@ class Registration extends Component {
         address:'',
         city:'',
         state:'',
-        pinCode:''
-
+        pinCode:'',
+        password:'',
+        puser:''
     };
-
+    
     constructor(props) {
         super(props);
         this.state = {
-            item: this.emptyItem
+            item: this.emptyItem,
+            dropDownOpen: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,14 +33,26 @@ class Registration extends Component {
             this.setState({item: localUser});
         }
     }
-
+	
+	toggle = () => {
+	    this.setState({
+	       dropDownOpen: !this.state.dropDownOpen,
+	    })
+	}
+	
+	handleChange2 = (code) => {
+		let item = {...this.state.item};
+		item.puser= code;
+	    this.setState({item})
+	}
+	
     handleChange(event) {
         const target = event.target;
         const value = target.value;
         const name = target.name;
         let item = {...this.state.item};
         item[name] = value;
-        this.setState({item});
+        this.setState({item});//yaha maine kch code likha tha wo ritika se teep lengeach
     }
 
     async handleSubmit(event) {
@@ -99,6 +113,31 @@ class Registration extends Component {
                         <Label for="email">Email</Label>
                         <Input type="text" name="email" id="email" value={item.email || ''}
                                onChange={this.handleChange} autoComplete="email"/>
+                    </FormGroup>
+                    <FormGroup className="mb-1">
+                        <Label for="email">Password</Label>
+                        <Input type="text" name="password" id="email" value={item.password || ''}
+                               onChange={this.handleChange} autoComplete="password"/>
+                    </FormGroup>
+                    <FormGroup className="mb-1">
+                        <Label for="email">Confirm Password</Label>
+                        <Input type="text" name="password2" id="email" value={item.password2 || ''}
+                               onChange={this.handleChange} autoComplete="password2"/>
+                    </FormGroup>
+                    <FormGroup className="mb-1">
+                    	<ButtonDropdown >
+				        <Dropdown isOpen={this.state.dropDownOpen} toggle={this.toggle} >
+				            <DropdownToggle color="primary" caret className="dropdown-toggle">
+				                Select User type
+				            </DropdownToggle>
+				            <DropdownMenu className="currency-dropdown">
+				                    <DropdownItem onClick={() => this.handleChange2("End User(EU)")} dropDownValue="End User(EU)">End User(EU)</DropdownItem>
+				                    <DropdownItem onClick={() => this.handleChange2("BU")} dropDownValue="BU">BU</DropdownItem>
+				                    <DropdownItem onClick={() => this.handleChange2("Admin(CC)")} dropDownValue="Admin(CC)">Admin(CC)</DropdownItem>
+				                    <DropdownItem onClick={() => this.handleChange2("Store Admin(SA)")} dropDownValue="Store Admin(SA)">Store Admin(SA)</DropdownItem>
+				                </DropdownMenu>
+				            </Dropdown>
+				        </ButtonDropdown>
                     </FormGroup>
                     <FormGroup className="mb-1">
                         <Button color="primary" type="submit">Save</Button>{' '}
