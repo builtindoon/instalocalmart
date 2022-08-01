@@ -52,7 +52,7 @@ class Registration extends Component {
         const name = target.name;
         let item = {...this.state.item};
         item[name] = value;
-        this.setState({item});//yaha maine kch code likha tha wo ritika se teep lengeach
+        this.setState({item});
     }
 
     async handleSubmit(event) {
