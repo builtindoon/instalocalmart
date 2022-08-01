@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter , Route, Switch,Link, withRouter } from 'react-router-dom';
 
-import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
+import { Button, Container, Form, FormGroup, Input, Label ,ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle, Dropdown,Col } from 'reactstrap';
 import AppNavbar from "./AppNavBar";
+import Select from 'react-select';
+ 
+
 
 class Registration extends Component {
 
@@ -15,14 +18,17 @@ class Registration extends Component {
         pinCode:'',
         password:'',
         password2:'',
+      	puser:'EU'
     };
+  
 
     constructor(props) {
         super(props);
         this.state = {
             item: this.emptyItem,
             passwordError: '',
-            confirmPasswordError: ''
+            confirmPasswordError:'',
+            DropDownOpen:'',
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -35,7 +41,16 @@ class Registration extends Component {
         }
         
     }
-
+    toggle = () => {
+	    this.setState({
+	       dropDownOpen: !this.state.dropDownOpen,
+	    })
+	}
+	handleChange2(code){
+		let item = {...this.state.item};
+        item.puser = code;
+        this.setState({item});
+	}
     handleChange(evnt) {
         const target = evnt.target;
         const value = target.value;
@@ -106,7 +121,6 @@ class Registration extends Component {
         });
         this.props.history.push('/local');
     }
-
     render() {
         const {item} = this.state;
         const title = <h2>{item.id ? 'Edit User' : 'Add User'}</h2>;
@@ -116,7 +130,27 @@ class Registration extends Component {
             <Container>
                 {title}
                 <Form onSubmit={this.handleSubmit}>
-                    <FormGroup className="mb-1">
+                
+                  <Col sm={2}>
+                
+                 <Label> User type:</Label>
+                 </Col>
+                 <Col sm={10}>
+                    	<ButtonDropdown>
+				        <Dropdown isOpen={this.state.dropDownOpen} toggle={this.toggle} >
+				            <DropdownToggle color="primary" caret className="dropdown-toggle" style={{width: "500px", marginBottom: "30px", backgroundColor: "#fff", color: "#000"}}>
+				                {this.state.item.puser!==''?this.state.item.puser:"End User(EU)"}
+				            </DropdownToggle>                            
+				            <DropdownMenu className="currency-dropdown">
+				                    <DropdownItem onClick={() => this.handleChange2("BU")} dropDownValue="BU">BU</DropdownItem>
+				                    <DropdownItem onClick={() => this.handleChange2("CC")} dropDownValue="CC">Admin(CC)</DropdownItem>
+				                    <DropdownItem onClick={() => this.handleChange2("SA")} dropDownValue="SA">Store Admin(SA)</DropdownItem>
+				                </DropdownMenu>
+				            </Dropdown>
+				        </ButtonDropdown>
+				        </Col>
+                 
+                   <FormGroup className="mb-1">
                         <Label for="firstName">First Name</Label>
                         <Input type="text" name="firstName" id="firstName" value={item.firstName || ''}
                                onChange={this.handleChange} autoComplete="firstName"/>
@@ -168,6 +202,7 @@ class Registration extends Component {
                         <Button color="primary" type="submit">Save</Button>{' '}
                         <Button color="secondary" tag={Link} to="/local">Cancel</Button>
                     </FormGroup>
+                   
                 </Form>
             </Container>
         </div>

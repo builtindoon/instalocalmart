@@ -30,7 +30,8 @@ public  class LocalBusinessRegistrationEntity {
     private String pinCode;
     private String email;
     private String password;
-    
+    private String puser;
+  
 
 
 
