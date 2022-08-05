@@ -5,5 +5,5 @@ import com.builtinproject.demo.controller.LocalRegistrationController;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface LocalBusinessRegistrationRepository extends JpaRepository<LocalBusinessRegistrationEntity, Long> {
-    LocalBusinessRegistrationEntity getLocalBusinessRegistrationEntityByEmail(String username);
+    public LocalBusinessRegistrationEntity findByEmail(String email);
 }
