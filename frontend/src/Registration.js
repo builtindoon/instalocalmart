@@ -119,27 +119,7 @@ class Registration extends Component {
         this.setState({confirmPasswordError: ""});
         }    }
     }
-        handleChange(evnt) {
-        const target = evnt.target;
-        const value = target.value;
-        const name = target.name;
-        let item = {...this.state.item};
-        item[name] = value;
-        this.setState({item});
-        console.log(item);
-         const firstNameInputValue = evnt.target.value.trim();
-    const firstNameInputFieldName = evnt.target.name;
-        if(firstNameInputFieldName==='firstName'){
-    {
-        errMsg="";
-    }
-    //setfirstNameErr(errMsg);
-    this.setState({firstNameError: errMsg});
-    }
-    
-    }
-               
-
+      
                
 
     async handleSubmit(event) {
