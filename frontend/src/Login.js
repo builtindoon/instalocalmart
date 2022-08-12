@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
+import { Button, Container, Form, FormGroup, Input, Label, Col } from 'reactstrap';
 import AppNavbar from "./AppNavBar";
 
 class Login extends Component {
@@ -21,6 +21,7 @@ class Login extends Component {
     async componentDidMount() {
         if (this.props.match.params.email !== 'new') {
             const userDetail = await (await fetch(`/local/${this.props.match.params.email,this.props.match.params.password}`)).json();
+            console.log(`/local/${this.props.match.params.email,this.props.match.params.password}`);
             this.setState({item: userDetail});
         }
     }
@@ -38,15 +39,16 @@ class Login extends Component {
         event.preventDefault();
         const {item} = this.state;
 
-        await fetch('/local' + (item.email ? '/' + item.email : item.password ? '/' + item.password : ''), {
-            method: (item.email,item.password) ? 'PUT' : 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(item),
+        let res = await fetch('/local' + (item.email ? '/' + item.email : ''), {
+            method: 'GET',
         });
-        this.props.history.push('/local');
+        let resJson = await res.json();
+        if(res.status!==200) alert("This email does not exist");
+        else{
+	if(this.state.item.password!==resJson.password) alert("Passoes not match");
+	else alert("Login successfull");
+}
+        this.props.history.push('/login');
     }
 
     render() {
@@ -58,19 +60,23 @@ class Login extends Component {
             <Container>
                 {title}
                 <Form onSubmit={this.handleSubmit}>
-                    <FormGroup>
-                        <Label for="email">Email:
+                    <FormGroup row>
+                        <Label for="email" sm={2}>Email:</Label>
+                        <Col sm={10}>
                         <Input type="text" name="email" id="email" value={item.email || ''}
-                               onChange={this.handleChange} autoComplete="email"/></Label>
+                               onChange={this.handleChange} autoComplete="email"/>
+                       </Col>
                     </FormGroup>
-                    <FormGroup>
-                        <Label for="email">Password:
+                    <FormGroup row style={{marginTop: "30px"}}>
+                        <Label for="email" sm={2}>Password:</Label>
+                        <Col sm={10}>
                         <Input type="password" name="password" id="passwrod" value={item.password || ''}
-                               onChange={this.handleChange} autoComplete="password"/></Label>
+                               onChange={this.handleChange} autoComplete="password"/>
+                               </Col>
                     </FormGroup>
-                    <FormGroup>
-                        <Button color="primary" type="submit">Login</Button>{' '}
-                        <Button color="secondary" tag={Link} to="/local">Cancel</Button>
+                    <FormGroup style={{display: "flex", alignContent: "center", justifyContent: "center"}}>
+                        <Button style={{margin: "30px"}} color="primary" type="submit">Login</Button>{' '}
+                        <Button style={{margin: "30px"}} color="secondary" tag={Link} to="/local">Cancel</Button>
                     </FormGroup>
                 </Form>
             </Container>
