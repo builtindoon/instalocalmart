@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+ import React, { Component } from 'react';
 import { BrowserRouter , Route, Switch,Link, withRouter } from 'react-router-dom';
 
 import { Button, Container, Form, FormGroup, Input, Label ,ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle, Dropdown,Col } from 'reactstrap';
@@ -8,7 +8,7 @@ import Select from 'react-select';
 
 
 class Registration extends Component {
-
+	
     emptyItem = {
         firstName: '',
         lastName: '',
@@ -16,6 +16,7 @@ class Registration extends Component {
         city:'',
         state:'',
         pinCode:'',
+        Email:'',
         password:'',
         password2:'',
       	puser:'EU'
@@ -23,17 +24,31 @@ class Registration extends Component {
   
 
     constructor(props) {
-        super(props);
+	 super(props);
         this.state = {
             item: this.emptyItem,
+            firstName:'',
+            lastName:'',
+            address:'',
+            city:'',
+            state:'',
+            pincode:'',
+            email:'',
+            firstNameError:'',
+            lastNameError:'',
+            addressError:'',
+            cityError:'',
+            stateError:'',
+            emailError:'',
             passwordError: '',
             confirmPasswordError:'',
             DropDownOpen:'',
+             
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
+   
     async componentDidMount() {
         if (this.props.match.params.id !== 'new') {
             const localUser = await (await fetch(`/local/${this.props.match.params.id}`)).json();
@@ -59,7 +74,7 @@ class Registration extends Component {
         item[name] = value;
         this.setState({item});
         console.log(item);
-        const passwordInputValue = evnt.target.value.trim();
+         const passwordInputValue = evnt.target.value.trim();
     const passwordInputFieldName = evnt.target.name;
         if(passwordInputFieldName==='password'){
     const uppercaseRegExp   = /(?=.*?[A-Z])/;
@@ -102,14 +117,16 @@ class Registration extends Component {
         }else{
         //setConfirmPasswordError("");
         this.setState({confirmPasswordError: ""});
-        }
-        
+        }   
+         }
     }
-    }
+       
 
     async handleSubmit(event) {
         event.preventDefault();
+      
         const {item} = this.state;
+        
 
         await fetch(('/local'), {
             method: 'POST',
@@ -121,7 +138,7 @@ class Registration extends Component {
         });
         this.props.history.push('/local');
     }
-    render() {
+   render() {
         const {item} = this.state;
         const title = <h2>{item.id ? 'Edit User' : 'Add User'}</h2>;
 
@@ -154,26 +171,31 @@ class Registration extends Component {
                         <Label for="firstName">First Name</Label>
                         <Input type="text" name="firstName" id="firstName" value={item.firstName || ''}
                                onChange={this.handleChange} autoComplete="firstName"/>
+                                <p style={{color: "red"}}>{this.state.firstNameError}</p>
                     </FormGroup>
                     <FormGroup className="mb-1">
                         <Label for="lastName">Last Name</Label>
                         <Input type="text" name="lastName" id="lastName" value={item.lastName || ''}
                                onChange={this.handleChange} autoComplete="lastName"/>
+                                <p style={{color: "red"}}>{this.state.lastNameError}</p>
                     </FormGroup>
                     <FormGroup className="mb-1">
                         <Label for="address">Address</Label>
                         <Input type="text" name="address" id="address" value={item.address || ''}
                                onChange={this.handleChange} autoComplete="address"/>
+                                <p style={{color: "red"}}>{this.state.addressError}</p>
                     </FormGroup>
                     <FormGroup className="mb-1">
                         <Label for="city">City</Label>
                         <Input type="text" name="city" id="city" value={item.city || ''}
                                onChange={this.handleChange} autoComplete="city"/>
+                                <p style={{color: "red"}}>{this.state.cityError}</p>
                     </FormGroup>
                     <FormGroup className="mb-1">
                         <Label for="state">State</Label>
                         <Input type="text" name="state" id="state" value={item.state || ''}
                                onChange={this.handleChange} autoComplete="state"/>
+                                <p style={{color: "red"}}>{this.state.stateError}</p>
                     </FormGroup>
                     <FormGroup className="mb-1">
                         <Label for="pinCode">Pincode</Label>
@@ -184,6 +206,7 @@ class Registration extends Component {
                         <Label for="email">Email</Label>
                         <Input type="text" name="email" id="email" value={item.email || ''}
                                onChange={this.handleChange} autoComplete="email"/>
+                                <p style={{color: "red"}}>{this.state.emailError}</p>
                     </FormGroup>
                     <FormGroup className="mb-1">
                         <Label for="email">Password</Label>
@@ -199,7 +222,7 @@ class Registration extends Component {
                     </FormGroup>
                      
                     <FormGroup className="mb-1">
-                        <Button color="primary" type="submit">Save</Button>{' '}
+                        <Button color="primary" type="submit" abled={!this.state.formValid}>Save</Button>{' '}
                         <Button color="secondary" tag={Link} to="/local">Cancel</Button>
                     </FormGroup>
                    
