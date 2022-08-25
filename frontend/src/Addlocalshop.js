@@ -18,10 +18,11 @@ import React, { Component } from "react";
 	
     constructor(props) {
       super(props);
-      this.state = { item: this.emptyItem };
+      this.state = { item: this.emptyItem, display: "none" };
       this.handleChange = this.handleChange.bind(this);
       this.handleShopName = this.handleShopName.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleDisplay = this.handleDisplay.bind(this);
     }
   
     handleChange(event) {
@@ -32,6 +33,13 @@ import React, { Component } from "react";
         item[name] = value;
         this.setState({item});
     }
+    
+    handleDisplay(event) {
+	if(this.state.display == "none")
+		this.setState({display: "flex"});
+		else 
+		this.setState({display: "none"});
+	}
     
     async handleSubmit(event) {
         event.preventDefault();
@@ -56,7 +64,7 @@ import React, { Component } from "react";
 	const {item} = this.state;
       return (
         <div>
-          <div className="container" style={{ padding: "30px 10px" }}>
+          <div className="container" style={{ padding: "20px 5px" }}>
             <div className="row">
               <div className="col-md-3"></div>
               <div className="col-md-6">
@@ -81,9 +89,29 @@ import React, { Component } from "react";
                     <Form.Select name="state" id="state" defaultValue={item.state || ''} onChange={this.handleChange} >
                       <option>State...</option>
                       <option value="delhi">Delhi</option>
-                      <option value="pune">Pune</option>
-                      <option value="mumbai">Mumbai</option>
-                      <option value="bengaluru">Bengaluru</option>
+                      <option value="punjab">Punjab</option>
+                      <option value="maharashtra">Maharashtra</option>
+                      <option value="assam">Assam</option>
+                      <option value="uttrakhand">Uttrakhand</option>
+                      <option value="uttar pradesh">Uttar Pradesh</option>
+                      <option value="bihar">Bihar</option>
+                      <option value="karnataka">Karnataka</option>
+                      <option value="west bengal">West Bengal</option>
+                      <option value="meghalya">Meghalaya</option>
+                      <option value="arunachal pradesh">Arunachal Pradesh</option>
+                      <option value="jharkhand">Jharkhand</option>
+                      <option value="sikkim">Sikkim</option>
+                      <option value="himachal pradesh">Himachal Pradesh</option>
+                      <option value="kerala">Kerala</option>
+                      <option value="tripura">Tripura</option>
+                      <option value="mizoram">Mizoram</option>
+                      <option value="gujarat">Gujarat</option>
+                      <option value="nagaland">Nagaland</option>
+                      <option value="manipur">Manipur</option>
+                      <option value="tamil nadu">Tamil Nadu</option>
+                      <option value="madhya pradesh">Madhya Pradesh</option>
+                      <option value="haryana">Haryana</option>
+                      <option value="andhra pradesh">Andhra Pradesh</option>
                     </Form.Select>
                     </div>
                   </Form.Group>
@@ -92,10 +120,30 @@ import React, { Component } from "react";
                     <div className="col-sm-10">
                     <Form.Select name="district" id="district" defaultValue={item.district || ''} onChange={this.handleChange} >
                       <option>District...</option>
-                      <option value="bihar">Bihar</option>
+                      <option value="banka">Banka</option>
                       <option value="dehradun">Dehradun</option>
                       <option value="lucknow">Lucknow</option>
-                    </Form.Select>
+                      <option value="biswanath">Biswanath</option>
+                      <option value="ahmedabad">Ahmedabad</option>
+                      <option value="ambala">Ambala</option>
+                      <option value="shimla">Shimla</option>
+                      <option value="bokaro">Bokaro</option>
+                      <option value="bagalkot">Bagalkot</option>
+                      <option value="alappuzha">Alappuzha</option>
+                      <option value="agar malwa">Agar Malwa</option>
+                      <option value="akola">Akola</option>
+                      <option value="bishnupur">Bishnupur</option>
+                      <option value="east garo hills">East Garo Hills</option>
+                      <option value="aizawl">Aizawl</option>
+                      <option value="dimapur">Dimapur</option>
+                      <option value="amritsar">amritsar</option>
+                      <option value="ajmer">Ajmer</option>
+                      <option value="pakyong">Pakyong</option>
+                      <option value="chennai">Chennai</option>
+                      <option value="dhalai">Dhalai</option>
+                      <option value="alipurduar">alipurduar</option>
+                      <option value="central dehli">Central Dehli</option>
+                  </Form.Select>
                     </div>
                   </Form.Group>
                   <Form.Group className="mb-1"   style={{ display: "flex" }} >
@@ -121,24 +169,30 @@ import React, { Component } from "react";
                         name="deliveryProvided"
                         id="deliveryProvided"
                         label={`Yes`}
-                        onChange={this.handleChange}
-                       checked={item.deliveryProvided}
+                        onChange={this.handleDisplay}
+                       //checked={item.deliveryProvided}
                       />
                       <Form.Check
                         type="radio"
                         name="deliveryProvided"
                         id="deliveryProvided"
                         label={`No`}
-                        checked={!item.deliveryProvided}
-                        onChange={this.handleChange}
+                        //checked={!item.deliveryProvided}
+                        onChange={this.handleDisplay}
                       />
                       </div>
                     </Form.Group>
                   </>
+                   <Form.Group className="mb-1" style={{ display: this.state.display }} >
+                    <Form.Label className="control-label col-sm-2">Delivery address</Form.Label>
+                    <div className="col-sm-10">
+                    <Form.Control type="text" name="landmark" id="landmark" value="" autoComplete="landmark" />
+                    </div>
+                  </Form.Group>
                   <Form.Label className="control-label col-sm-2">Items to be added</Form.Label>
                   <br></br>
   
-                  <Button variant="none" type="submit">
+                  <Button variant="success" type="submit">
                     Add Store
                   </Button>
                   <Button variant="success" type="submit">
