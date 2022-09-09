@@ -19,6 +19,7 @@ export default class AppNavbar extends Component {
         return <Navbar color="dark" dark expand="md"   >
             <NavbarBrand tag={Link} to="/">Home</NavbarBrand>
             <NavbarBrand class="collapse navbar-collapse" tag={Link} to="/">SignUp</NavbarBrand>
+            <NavbarBrand class="collapse navbar-collapse" tag={Link} to="/">Addlocalshop</NavbarBrand>
         </Navbar>;
     }
 }

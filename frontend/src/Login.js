@@ -121,12 +121,12 @@ class Login extends Component {
                 <Form onSubmit={this.handleSubmit} method="POST">
                  <FormGroup row>
                  <Col sm={2}>
-                 <Label for="email">Select User type:</Label>
+                 <Label for="email">Select User type:</Label>		
                  </Col>
-                 <Col sm={10}>
+                 <Col sm={5}>
                     	<ButtonDropdown>
 				        <Dropdown isOpen={this.state.dropDownOpen} toggle={this.toggle} >
-				            <DropdownToggle color="primary" caret className="dropdown-toggle" style={{width: "1078px", marginBottom: "30px", backgroundColor: "#fff", color: "#000"}}>
+				            <DropdownToggle color="primary" caret className="dropdown-toggle" style={{width: "540px", marginBottom: "15px", backgroundColor: "#fff", color: "#000"}}>
 				                {this.state.item.puser!==""?this.state.item.puser:"Choose any one"}
 				            </DropdownToggle>
 				            <DropdownMenu className="currency-dropdown">
@@ -141,7 +141,7 @@ class Login extends Component {
                     </FormGroup>
                     <FormGroup row>
                         <Label for="email" sm={2}>Email:</Label>
-                        <Col sm={10}>
+                        <Col sm={5}>
                         <Input type="text" name="email" id="email" value={item.email || ''}
                                onChange={this.handleChange} autoComplete="email"/>
                                <p style={{"color": "red"}}>{this.state.validation.email}</p>
@@ -149,7 +149,7 @@ class Login extends Component {
                     </FormGroup>
                     <FormGroup row style={{marginTop: "30px"}}>
                         <Label for="email" sm={2}>Password:</Label>
-                        <Col sm={10}>
+                        <Col sm={5}>
                         <Input type="password" name="password" id="passwrod" value={item.password || ''}
                                onChange={this.handleChange} autoComplete="password"/>
                                <p style={{"color": "red"}}>{this.state.validation.password}</p>

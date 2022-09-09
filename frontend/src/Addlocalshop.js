@@ -72,20 +72,20 @@ import React, { Component } from "react";
   
                 <Form className="form-horizontal" onSubmit={this.handleSubmit} >
                   <Form.Group className="mb-1"   style={{ display: "flex" }} >
-                    <Form.Label className="control-label col-sm-2">Shop Name</Form.Label>
-                    <div className="col-sm-10">
+                    <Form.Label className="control-label col-2">Shop Name</Form.Label>
+                    <div className="col-10">
                     <Form.Control type="text" name="shopName" id="shopName" value={item.shopName || ''} onChange={this.handleChange} autoComplete="shopName" />
                     </div>
                   </Form.Group>
                   <Form.Group className="mb-1"   style={{ display: "flex" }} >
-                    <Form.Label className="control-label col-sm-2">Shop Address</Form.Label>
-                    <div className="col-sm-10">
+                    <Form.Label className="control-label col-2">Shop Address</Form.Label>
+                    <div className="col-10">
                     <Form.Control type="text" name="shopAddress" id="shopAddress" value={item.shopAddress || ''} onChange={this.handleChange} autoComplete="shopAddress" />
                     </div>
                   </Form.Group>
                   <Form.Group className="mb-1"   style={{ display: "flex" }} >
-                    <Form.Label className="control-label col-sm-2">State</Form.Label>
-                    <div className="col-sm-10">
+                    <Form.Label className="control-label col-2">State</Form.Label>
+                    <div className="col-10">
                     <Form.Select name="state" id="state" defaultValue={item.state || ''} onChange={this.handleChange} >
                       <option>State...</option>
                       <option value="delhi">Delhi</option>
@@ -116,8 +116,8 @@ import React, { Component } from "react";
                     </div>
                   </Form.Group>
                   <Form.Group className="mb-1"   style={{ display: "flex" }} >
-                    <Form.Label className="control-label col-sm-2">District</Form.Label>
-                    <div className="col-sm-10">
+                    <Form.Label className="control-label col-2">District</Form.Label>
+                    <div className="col-10">
                     <Form.Select name="district" id="district" defaultValue={item.district || ''} onChange={this.handleChange} >
                       <option>District...</option>
                       <option value="banka">Banka</option>
@@ -147,23 +147,23 @@ import React, { Component } from "react";
                     </div>
                   </Form.Group>
                   <Form.Group className="mb-1"   style={{ display: "flex" }} >
-                    <Form.Label className="control-label col-sm-2">Pincode</Form.Label>
-                    <div className="col-sm-10">
+                    <Form.Label className="control-label col-2">Pincode</Form.Label>
+                    <div className="col-10">
                     <Form.Control type="text" name="pincode" id="pincode" value={item.pincode || ''} onChange={this.handleChange} autoComplete="pincode" />
                     </div>
                   </Form.Group>
   
                   <Form.Group className="mb-1"   style={{ display: "flex" }} >
-                    <Form.Label className="control-label col-sm-2">Landmark</Form.Label>
-                    <div className="col-sm-10">
+                    <Form.Label className="control-label col-2">Landmark</Form.Label>
+                    <div className="col-10">
                     <Form.Control type="text" name="landmark" id="landmark" value={item.landmark || ''} onChange={this.handleChange} autoComplete="landmark" />
                     </div>
                   </Form.Group>
   
                   <>
                   <Form.Group className="mb-1"   style={{ display: "flex" }} >
-                      <Form.Label className="control-label col-sm-2">Delivery Provided:</Form.Label>
-                      <div className="col-sm-10">
+                      <Form.Label className="control-label col-2">Delivery Provided:</Form.Label>
+                      <div className="col-10">
                       <Form.Check
                         type="radio"
                         name="deliveryProvided"
@@ -184,20 +184,21 @@ import React, { Component } from "react";
                     </Form.Group>
                   </>
                    <Form.Group className="mb-1" style={{ display: this.state.display }} >
-                    <Form.Label className="control-label col-sm-2">Delivery address</Form.Label>
-                    <div className="col-sm-10">
+                    <Form.Label className="control-label col-2">Delivery address</Form.Label>
+                    <div className="col-10">
                     <Form.Control type="text" name="landmark" id="landmark" value="" autoComplete="landmark" />
                     </div>
                   </Form.Group>
-                  <Form.Label className="control-label col-sm-2">Items to be added</Form.Label>
+                  <Form.Label className="control-label col-2">Items to be added</Form.Label>
                   <br></br>
-  
-                  <Button variant="success" type="submit">
+             <div className="text-center">
+                  <Button variant="success" type="submit" style={{margin: "30px"}}>
                     Add Store
                   </Button>
-                  <Button variant="success" type="submit">
+                  <Button variant="success" type="reset" style={{margin: "30px"}}>
                     Cancel
                   </Button>
+                  </div>
                 </Form>
               </div>
               <div className="col-md-3"></div>
