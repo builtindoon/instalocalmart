@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import axios from "axios";
 
 export default function Product() {
   const [price, setPrice] = useState(0);
@@ -19,13 +20,12 @@ export default function Product() {
   const handleCatTypeChange = (e) =>
     setChosenCategory(category[e.target.value]);
   const [shop, setShop] = useState([
-    "Choose shop...",
-    "Shop1",
-    "Shop2",
-    "Shop3",
-    "Step4",
+    // "Choose shop...",
+    // "Shop1",
+    // "Shop2",
+    // "Shop3",
+    // "Step4",
   ]);
-  const Shop = category.map((Shop) => Shop);
   const handleShopTypeChange = (e) => {
     setChosenShop(shop[e.target.value]);
   };
@@ -39,17 +39,42 @@ export default function Product() {
     if (name == "") errors.push("Name can't be empty");
     if (chosenCategory == "") errors.push("Please choose any category.");
     if (chosenShop == "") errors.push("Please choose any shop");
+    console.log(errors);
     return errors;
   }
   const handleSubmit = (e) => {
     e.preventDefault();
     const errors = validate();
     if (errors.length > 0) {
-      setError({ errors });
+      setError( errors );
       return;
     }
+    setError([]);
     alert("Added product successfully");
   };
+  
+  let Shop = {};
+  useEffect(() => {
+    async function fetchData() {
+      // Fetch data
+      const { data } = await axios.get("http://localhost:8080/localshop");
+      const results = []
+      // Store results in the results array
+      data.forEach((value) => {
+        results.push(value.shopName);
+      });
+      // Update the options state
+      setShop([
+        "Select a shop", 
+        ...results
+      ])
+      console.log(shop);
+      Shop = shop.map((Shop) => Shop);
+    }
+
+    // Trigger the fetch
+    fetchData();
+  }, []);
   return (
     <div>
       <div className="container" style={{ padding: "10px 10px" }}>
@@ -59,7 +84,7 @@ export default function Product() {
             <h1> Add Product/Goods</h1>
             <Form className="form-horizontal" onSubmit={handleSubmit}>
               {error.map((error) => (
-                <p key={error}>Error: {error}</p>
+                <p style={{color: 'red'}} key={error}>Error: {error}</p>
               ))}
               <Form.Group className="mb-1" style={{ display: "flex" }}>
                 <Form.Label className="control-label col-sm-4">
@@ -71,7 +96,7 @@ export default function Product() {
                     onChange={(e) => handleCatTypeChange(e)}
                   >
                     {Cat.map((category, key) => (
-                      <option value={key}>{category}</option>
+                      <option key={key} value={key}>{category}</option>
                     ))}
                   </Form.Select>
                 </div>
@@ -85,8 +110,8 @@ export default function Product() {
                     defaultValue="State..."
                     onChange={(e) => handleShopTypeChange(e)}
                   >
-                    {Shop.map((shop, key) => (
-                      <option value={key}>{shop}</option>
+                    {shop.map((shop, key) => (
+                      <option key={key} value={key}>{shop}</option>
                     ))}
                   </Form.Select>
                 </div>
@@ -155,7 +180,7 @@ export default function Product() {
                   <Button
                     style={{ margin: "30px" }}
                     color="primary"
-                    type="submit"
+                    type="reset"
                   >
                     Cancel
                   </Button>
@@ -168,4 +193,4 @@ export default function Product() {
       </div>
     </div>
   );
-}
+} 

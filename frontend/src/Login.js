@@ -14,7 +14,7 @@ class Login extends Component {
         super(props);
         this.state = {
             item: this.emptyItem,
-            dropDownOpen:'',
+            dropDownOpen:false,
             validation: {
 	email: '',
 	password: ''
@@ -24,13 +24,13 @@ class Login extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    async componentDidMount() {
-        if (this.props.match.params.email !== 'new') {
-            const userDetail = await (await fetch(`/local/${this.props.match.params.email,this.props.match.params.password}`)).json();
-            console.log(`/local/${this.props.match.params.email,this.props.match.params.password}`);
-            this.setState({item: userDetail});
-        }
-    }
+    // async componentDidMount() {
+    //     if (this.props.match.params.email !== 'new') {
+    //         const userDetail = await (await fetch(`/local/${this.props.match.params.email,this.props.match.params.password}`)).json();
+    //         console.log(`/local/${this.props.match.params.email,this.props.match.params.password}`);
+    //         this.setState({item: userDetail});
+    //     }
+    // }
 	
 	toggle = () => {
 	    this.setState({
