@@ -9,13 +9,13 @@ export default function Product() {
   const [name, setName] = useState("");
   const [chosenCategory, setChosenCategory] = useState("");
   const [chosenShop, setChosenShop] = useState("");
-  const [category, setCategory] = useState([
+  const category = [
     "Choose category...",
     "Convenience Goods",
     "Shopping Goods",
     "Speciality Goods",
     "Unsought Goods",
-  ]);
+  ];
   const Cat = category.map((Cat) => Cat);
   const handleCatTypeChange = (e) =>
     setChosenCategory(category[e.target.value]);
@@ -50,7 +50,25 @@ export default function Product() {
       return;
     }
     setError([]);
+
+    axios({
+      method: 'post',
+      url: '/product',
+      data: {
+        productCategory: chosenCategory,
+        shopName: chosenShop,
+        productName: name,
+        productBrand: brand,
+        productQuantity: quantity,
+        productPrice: price
+      }
+  })
+  .then(function (response) {
     alert("Added product successfully");
+  })
+  .catch(function (error) {
+      console.log(error);
+  });
   };
   
   let Shop = {};

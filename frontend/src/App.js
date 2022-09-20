@@ -9,6 +9,7 @@ import RegistrationList from "./RegistrationList";
 import Login from "./Login";
 import Addlocalshop from './Addlocalshop';
 import Product from './Product';
+import ProductList from './ProductList';
 
 class App extends Component {
     render() {
@@ -23,6 +24,7 @@ class App extends Component {
                     <Route path='/login' exact={true} component={Login}/>
                     <Route path='/localshop' exact={true} component={Addlocalshop}/>
                     <Route path='/product' exact={true} component={Product}/>
+                    <Route path='/productlist' exact={true} component={ProductList}/>
                 </Switch>
             </Router>
         )
