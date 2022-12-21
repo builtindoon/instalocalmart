@@ -10,7 +10,8 @@ import Login from "./Login";
 import Addlocalshop from './Addlocalshop';
 import Product from './Product';
 import ProductList from './ProductList';
-
+import Adddriver from './Adddriver';
+import AdddriverList from './AdddriverList';
 class App extends Component {
     render() {
         return (
@@ -25,6 +26,8 @@ class App extends Component {
                     <Route path='/localshop' exact={true} component={Addlocalshop}/>
                     <Route path='/product' exact={true} component={Product}/>
                     <Route path='/productlist' exact={true} component={ProductList}/>
+                      <Route path='/adddriver' exact={true} component={Adddriver}/>
+                       <Route path='/adddriverList' exact={true} component={AdddriverList}/>
                 </Switch>
             </Router>
         )

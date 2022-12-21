@@ -14,6 +14,10 @@ class Home extends Component {
                     <Button color="link"><Link to="/local">Registration</Link></Button>
                      <Button color="link"><Link to="/local">login</Link></Button>
                       <Button color="link"><Link to="/local">addlocalshop</Link></Button>
+                      <Button color="link"><Link to="/local">shop</Link></Button>
+                      <Button color="link"><Link to="/local">description</Link></Button>
+                      <Button color="link"><Link to="/adddriver">Adddriver</Link></Button>
+                       <Button color="link"><Link to="/adddriverlist">AdddriverList</Link></Button>
                 </Container>
             </div>
         );

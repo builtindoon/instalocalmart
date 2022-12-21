@@ -20,6 +20,8 @@ export default class AppNavbar extends Component {
             <NavbarBrand tag={Link} to="/">Home</NavbarBrand>
             <NavbarBrand class="collapse navbar-collapse" tag={Link} to="/">SignUp</NavbarBrand>
             <NavbarBrand class="collapse navbar-collapse" tag={Link} to="/">Addlocalshop</NavbarBrand>
+            <NavbarBrand class="collapse navbar-collapse" tag={Link} to="/">Adddriver</NavbarBrand>
+             <NavbarBrand class="collapse navbar-collapse" tag={Link} to="/">AdddriverList</NavbarBrand>
         </Navbar>;
     }
 }

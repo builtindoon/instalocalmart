@@ -15,7 +15,7 @@ class ProductList extends Component {
             .then(response => response.json())
             .then(data => this.setState({products: data}));
     }
-    //delete aur edit ka to api bnaya hi ni humne
+   
     async remove(id) {
         await fetch(`/product/${id}`, {
             method: 'DELETE',
