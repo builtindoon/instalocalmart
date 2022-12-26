@@ -1,0 +1,37 @@
+import React, { Component } from 'react';
+import './App.css';
+import Home from './Home';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import ClientList from './ClientList';
+import ClientEdit from "./ClientEdit";
+import Registration from "./Registration";
+import RegistrationList from "./RegistrationList";
+import Login from "./Login";
+import Addlocalshop from './Addlocalshop';
+import Product from './Product';
+import ProductList from './ProductList';
+import Adddriver from './Adddriver';
+import AdddriverList from './AdddriverList';
+class App extends Component {
+    render() {
+        return (
+            <Router>
+                <Switch>
+                    <Route path='/' exact={true} component={Home}/>
+                    <Route path='/clients' exact={true} component={ClientList}/>
+                    <Route path='/clients/:id' component={ClientEdit}/>
+                    <Route path='/local' exact={true} component={RegistrationList}/>
+                    <Route path='/local/:id' component={Registration}/>
+                    <Route path='/login' exact={true} component={Login}/>
+                    <Route path='/localshop' exact={true} component={Addlocalshop}/>
+                    <Route path='/product' exact={true} component={Product}/>
+                    <Route path='/productlist' exact={true} component={ProductList}/>
+                      <Route path='/adddriver' exact={true} component={Adddriver}/>
+                       <Route path='/adddriverList' exact={true} component={AdddriverList}/>
+                </Switch>
+            </Router>
+        )
+    }
+}
+
+export default App;
