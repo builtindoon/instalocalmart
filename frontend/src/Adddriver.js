@@ -72,7 +72,7 @@ class Adddriver extends React.Component {
         {title}
         <Form onSubmit={this.handleSubmit}>
           <FormGroup className="mb-1">
-            <Label for="DLNo"> DLNo</Label>
+            <Label for="DLNo"> DLNo :</Label>
             <Input
               type="text"
               name="DLNo"
@@ -83,7 +83,7 @@ class Adddriver extends React.Component {
             />
           </FormGroup>
           <FormGroup className="mb-1">
-            <Label for="Name"> Name</Label>
+            <Label for="Name"> Name :</Label>
             <Input
               type="text"
               name="Name"
@@ -94,7 +94,7 @@ class Adddriver extends React.Component {
             />
           </FormGroup>
           <FormGroup className="mb-1">
-            <Label for="FatherName">Father Name</Label>
+            <Label for="FatherName">Father Name :</Label>
             <Input
               type="text"
               name=" FatherName"
@@ -105,7 +105,7 @@ class Adddriver extends React.Component {
             />
           </FormGroup>
           <FormGroup className="mb-1">
-            <Label for="BloodGrp"> BloodGrp</Label>
+            <Label for="BloodGrp"> BloodGrp :</Label>
             <Input
               type="text"
               name="BloodGrp"
@@ -116,7 +116,7 @@ class Adddriver extends React.Component {
             />
           </FormGroup>
           <FormGroup className="mb-1">
-            <Label for=" IssueDate"> IssueDate</Label>
+            <Label for=" IssueDate"> IssueDate :</Label>
             <Input
               type="text"
               name=" IssueDatep"
@@ -127,18 +127,18 @@ class Adddriver extends React.Component {
             />
           </FormGroup>
           <FormGroup className="mb-1">
-            <Label for="AadhaarNo">AadhaarNo</Label>
+            <Label for="Address">Address :</Label>
             <Input
               type="text"
-              name="AadhaarNo"
-              id="AadhaarNo"
-              value={item.AadhaarNo || ""}
+              name="Address"
+              id="Address"
+              value={item.Address || ""}
               onChange={this.handleChange}
-              autoComplete="AadhaarNo"
+              autoComplete="Address"
             />
           </FormGroup>
           <FormGroup className="mb-1">
-            <Label for="Validity">Validity</Label>
+            <Label for="Validity">Validity :</Label>
             <Input
               type="text"
               name="Validity"
@@ -149,7 +149,7 @@ class Adddriver extends React.Component {
             />
           </FormGroup>
           <FormGroup className="mb-1">
-            <Label for="AadhaarNo">AadhaarNo</Label>
+            <Label for="AadhaarNo">AadhaarNo :</Label>
             <Input
               type="text"
               name="AadhaarNo"
@@ -159,6 +159,7 @@ class Adddriver extends React.Component {
               autoComplete="AadhaarNo"
             />
           </FormGroup>
+            <Label for="DateOfBirth">DateOfBirth :</Label>
           <Input
             id="date"
             label="Choose your birthdate"
@@ -169,7 +170,7 @@ class Adddriver extends React.Component {
             }}
           />
           <FormGroup className="mb-1">
-            <Label for="Original LA">original LA</Label>
+            <Label for="Original LA">original LA :</Label>
             <Input
               type="text"
               name="original LA"
@@ -180,7 +181,7 @@ class Adddriver extends React.Component {
             />
           </FormGroup>
           <FormGroup className="mb-1">
-            <Label for="Original LA">original LA</Label>
+            <Label for="Original LA">original LA :</Label>
             <Input
               type="text"
               name="original LA"
@@ -191,7 +192,7 @@ class Adddriver extends React.Component {
             />
           </FormGroup>
           <FormGroup className="mb-1">
-            <Label for="Date of issue">Date of issue</Label>
+            <Label for="Date of issue">Date of issue :</Label>
             <Input
               type="text"
               name="Date of issue"
@@ -202,7 +203,7 @@ class Adddriver extends React.Component {
             />
           </FormGroup>
           <FormGroup className="mb-1">
-            <Label for="Class of Vehicles">Class of Vehicles</Label>
+            <Label for="Class of Vehicles">Class of Vehicles :</Label>
             <Input
               type="text"
               name="Class of Vehicles"
